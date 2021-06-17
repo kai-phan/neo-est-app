@@ -1,0 +1,22 @@
+modules:
+  jira:projectPage:
+    - key: neo-lab-est-app-hello-world-project-page
+      resource: main
+      resolver:
+        function: resolver
+      title: Timeline
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/neo-lab-app/build
+    tunnel:
+      port: 3000
+app:
+  id: ari:cloud:ecosystem::app/9b830b09-a153-48f3-8700-c0ebeb757134
+  name: neo lab est app
+permissions:
+  scopes:
+    - 'read:jira-work'
+    - 'write:jira-work'

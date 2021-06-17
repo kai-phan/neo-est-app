@@ -20,3 +20,10 @@ permissions:
   scopes:
     - 'read:jira-work'
     - 'write:jira-work'
+  content:
+    styles:
+      - 'unsafe-inline'
+    scripts:
+      - 'unsafe-hashes'
+      - 'unsafe-eval'
+      - 'unsafe-inline'

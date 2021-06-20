@@ -1,28 +1,78 @@
 import React, { useEffect, useState } from 'react';
-import { invoke, requestJira } from '@forge/bridge';
-import { Gantt, MaterialTheme } from "@dhtmlx/trial-react-gantt";
-import { columns, scales, tasks, links } from "./data";
+import { invoke, view } from '@forge/bridge';
+import Styled from 'styled-components';
 
-import request from './api';
+import api from './api';
+import FullScreenStatus from './Components/FullScreenStatus';
+import AppGantt from './Components/Gantt';
+import AppHeader from './Components/AppHeader';
 
 function App() {
-    const [issues, setIssues] = useState(null);
+  const [appStatus, setAppStatus] = useState(null);
 
-    useEffect(() => {
-        // invoke('getText', { example: 'my-invoke-variable' }).then(setData);
-        const initFetch = async () => {
-            const res = await requestJira('/rest/api/3/search');
-            setIssues(res.body);
-        }
-        initFetch();
-    }, []);
+  const [currentProject, setCurrentProject] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [issues, setIssues] = useState([]);
 
-    return (
-        <MaterialTheme>
-            {JSON.stringify(issues)}
-            <Gantt scales={scales} columns={columns} tasks={tasks} links={links} />
-        </MaterialTheme>
-    );
+  useEffect(() => {
+    if (!issues.length) {
+      setAppStatus('no-data');
+    } else {
+      setAppStatus(null);
+    }
+  }, [issues]);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      setAppStatus('loading');
+
+      const context = await view.getContext();
+      const { project } = context.extension;
+      setCurrentProject(project);
+
+      const allResponse = await Promise.all([
+        api.getListIssueByJQL({ prjId: project.key }),
+        api.getUsersInProject(project.key)
+      ]);
+
+      const hasError = allResponse.some(res => !res.ok);
+      if (hasError) {
+        setAppStatus('error');
+        return;
+      }
+
+      const [issuesResponse, usersResponse] = allResponse;
+      setIssues(issuesResponse.body.issues);
+      setUsers(usersResponse.body);
+
+      setAppStatus(null);
+    };
+
+    fetchResources();
+  }, []);
+
+  const headerProps = {
+    users,
+    issues,
+    currentProject,
+    setIssues,
+  };
+
+  return (
+    <React.Fragment>
+      {currentProject && <AppHeader {...headerProps}/>}
+      <MarginBottom value={16}/>
+      {appStatus ? <FullScreenStatus status={appStatus}/> : (
+        <React.Fragment>
+          <AppGantt/>
+        </React.Fragment>
+      )}
+    </React.Fragment>
+  );
 }
+
+const MarginBottom = Styled.div`
+    margin-bottom: ${({ value }) => value || 0}px;
+`;
 
 export default App;

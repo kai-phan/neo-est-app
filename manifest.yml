@@ -20,6 +20,7 @@ permissions:
   scopes:
     - 'read:jira-work'
     - 'write:jira-work'
+    - 'read:jira-user'
   content:
     styles:
       - 'unsafe-inline'

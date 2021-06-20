@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 
 import { issuesToData } from '../../helpers';
 import TaskContent from './TaskContent';
+import { invoke } from '@forge/bridge';
 
 const scales = [
   // { unit: 'month', step: 1, format: 'MMMM yyy' },
@@ -27,14 +28,12 @@ const links = [
 const AppGantt = (props) => {
   const { issues } = props;
 
-  const task = issuesToData(issues);
-
+  const tasks = issuesToData(issues);
 
   const markers = [
     {
       start: new Date(),
       text: "To day",
-      title: "start point of project",
     }
   ];
 
@@ -47,7 +46,7 @@ const AppGantt = (props) => {
           markers={markers}
           scales={scales}
           columns={columns}
-          tasks={task}
+          tasks={tasks}
           links={links}
           templates={{ taskText: TaskContent }}
         />

@@ -72,17 +72,24 @@ export const convertIssue = (issue) => {
     displayName: fields.assignee?.displayName,
     renderAssignee: <Assignee issue={issue}/>,
     renderStatus: <Status issue={issue}/>,
+    type: 'project',
   };
 };
 
 export const issuesToData = (issues) => {
   return issues.map((issue) => {
     const isSubtask = issue.fields.issuetype.subtask;
-    return {
-      ...convertIssue(issue),
-      type: isSubtask ? 'task' : 'project',
-      parent: isSubtask ? issue.fields.parent.id : undefined,
+
+    if (isSubtask) {
+      const hasParent = issues.some((item) => issue.fields.parent.id === item.id);
+      return {
+        ...convertIssue(issue),
+        parent: hasParent ? issue.fields.parent.id : undefined,
+        type: hasParent ? 'task' : 'project',
+      };
     };
+
+    return convertIssue(issue);
   });
 };
 

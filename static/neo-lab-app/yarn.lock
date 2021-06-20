@@ -31,6 +31,14 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/core" "^10.0.9"
 
+"@atlaskit/badge@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/badge/-/badge-14.1.1.tgz#236833899b86c82954a5eab825c0c23ee5b6caa9"
+  integrity sha512-oYVNfeiNNryuiW3RqacocecFzbi8K6oGDfGbr3dRhXgs8cM7r/eoRwCI5xf1rqpOlAj7pyD5xTVEw9XufX0giA==
+  dependencies:
+    "@atlaskit/theme" "^11.0.0"
+    "@babel/runtime" "^7.0.0"
+
 "@atlaskit/button@^15.1.0", "@atlaskit/button@^15.1.6":
   version "15.1.6"
   resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-15.1.6.tgz#69816fd50ed86d4091ceeed710f7405021bacbb7"
@@ -95,6 +103,15 @@
     "@atlaskit/theme" "^11.0.0"
     "@babel/runtime" "^7.0.0"
     "@emotion/core" "^10.0.9"
+
+"@atlaskit/lozenge@^10.1.2":
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/@atlaskit/lozenge/-/lozenge-10.1.2.tgz#2e56bd9c3fc3cd8d8bb94f478397943aa67709d1"
+  integrity sha512-HJHFT4T35iaDqRvEJmvHH9n4hfjJEb1hhYTynbM/uIq8hykYMHhkIhcU34hhOfxnOb6LqygbZ1HhSuK0vcPngQ==
+  dependencies:
+    "@atlaskit/theme" "^11.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@compiled/react" "^0.6.0"
 
 "@atlaskit/motion@^1.0.0":
   version "1.0.1"
@@ -1402,6 +1419,13 @@
   dependencies:
     exec-sh "^0.3.2"
     minimist "^1.2.0"
+
+"@compiled/react@^0.6.0":
+  version "0.6.12"
+  resolved "https://registry.yarnpkg.com/@compiled/react/-/react-0.6.12.tgz#46d8dc7b551018b6003ee76103d315795fadcc90"
+  integrity sha512-IdVpurh74Fl77J9SMM1N7mafkMZgsqwMR2u6eyoqFNxqIdTD7ntln9n+FQTiTDuZPPZBY6oUUDnk824neHXNiA==
+  dependencies:
+    csstype "^3.0.8"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -4259,7 +4283,7 @@ csstype@^2.5.7:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.17.tgz#4cf30eb87e1d1a005d8b6510f95292413f6a1c0e"
   integrity sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==
 
-csstype@^3.0.2:
+csstype@^3.0.2, csstype@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha512-jXKhWqXPmlUeoQnF/EhTtTl4C9SnrxSH/jZUih3jmO6lBKr99rP3/+FmrMj4EFpOXzMtXHAZkd3x0E6h6Fgflw==

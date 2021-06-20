@@ -53,7 +53,6 @@ function App() {
 
   const headerProps = {
     users,
-    issues,
     currentProject,
     setIssues,
   };
@@ -64,7 +63,7 @@ function App() {
       <MarginBottom value={16}/>
       {appStatus ? <FullScreenStatus status={appStatus}/> : (
         <React.Fragment>
-          <AppGantt/>
+          <AppGantt issues={issues}/>
         </React.Fragment>
       )}
     </React.Fragment>

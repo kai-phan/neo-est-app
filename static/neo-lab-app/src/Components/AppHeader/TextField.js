@@ -5,7 +5,6 @@ const AppTextField = (props) => {
 
   return (
     <Textfield
-      isClearable
       placeholder="Issue ID"
       onChange={(e) => props.onChange(e.target.value)}
       {...props}

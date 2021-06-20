@@ -9,7 +9,7 @@ import AppSelect from './SelectField';
 import AppTextField from './TextField';
 
 const AppHeader = (props) => {
-  const { users, currentProject, issues, setIssues } = props;
+  const { users, currentProject, setIssues } = props;
 
   const [loadMore, setLoadMore] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -90,8 +90,6 @@ const AppHeader = (props) => {
                 </Row>
               </Col>
             </Row>
-            {JSON.stringify(value)}
-            {JSON.stringify(issues.map(i => i.key))}
           </form>
         );
       }}

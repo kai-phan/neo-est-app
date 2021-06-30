@@ -21,6 +21,7 @@ const AppHeader = (props) => {
     issuesId: null,
     userId: null,
     per: PER,
+    cb: setSubmitting,
   });
 
   useEffect(() => {

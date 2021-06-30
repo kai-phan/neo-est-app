@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useContext } from 'react';
+import React, { Fragment, useCallback, useContext, useEffect, useState } from 'react';
 import Form, { Field, ErrorMessage } from '@atlaskit/form';
 import Textfield from '@atlaskit/textfield';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import { EstimateCtx } from '../../App';
 const EstimateModal = ({ issue, action }) => {
   const { setIsEst, isEst } = useContext(EstimateCtx);
   const close = () => action({ action: 'hide-details' });
+  const [loading, setLoading] = useState(false);
 
   const CustomContainer = useCallback((props) => {
     return (
@@ -27,7 +28,7 @@ const EstimateModal = ({ issue, action }) => {
   }, []);
 
   const onSubmit = async (val) => {
-    setIsEst(true);
+    setLoading(true);
     const payload = {
       update: {
         timetracking: [
@@ -42,6 +43,8 @@ const EstimateModal = ({ issue, action }) => {
     };
 
     await api.putEstimate({ payload, issueId: issue.id });
+    setIsEst(true);
+    setLoading(false);
     close();
   };
 
@@ -57,7 +60,7 @@ const EstimateModal = ({ issue, action }) => {
         {issue && (
           <Modal
             actions={[
-              { text: 'Create', type: 'submit', isLoading: isEst },
+              { text: 'Create', type: 'submit', isLoading: loading },
               { text: 'Close', onClick: close },
             ]}
             components={{

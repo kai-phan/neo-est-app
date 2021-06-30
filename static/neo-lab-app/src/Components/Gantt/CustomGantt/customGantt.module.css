@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+.layout {
+    border-top: 1px solid #ddd;
+    position: absolute;
+    display: flex;
+    max-height: 375px;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100px;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.icon {
+    position: absolute;
+    right: 25px;
+    bottom: 35px;
+    z-index: 4;
+}

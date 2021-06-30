@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Styled from 'styled-components';
 import LoadingButton from '@atlaskit/button/loading-button';
 import Form, { Field } from '@atlaskit/form';
@@ -7,9 +7,12 @@ import api from '../../api';
 import { PER } from '../../helpers';
 import AppSelect from './SelectField';
 import AppTextField from './TextField';
+import { EstimateCtx } from '../../App';
 
 const AppHeader = (props) => {
   const { users, currentProject, setIssues } = props;
+
+  const { setIsEst, isEst } = useContext(EstimateCtx);
 
   const [loadMore, setLoadMore] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -23,6 +26,17 @@ const AppHeader = (props) => {
   useEffect(() => {
     getIssues();
   }, [value]);
+
+  useEffect(() => {
+    const fetchIssueByEst = async () => {
+      if (isEst) {
+        await getIssues();
+        setIsEst(false);
+      }
+    }
+
+    fetchIssueByEst();
+  },[isEst]);
 
   const getIssues = async () => {
     value.cb?.(true);

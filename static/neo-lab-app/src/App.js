@@ -7,12 +7,16 @@ import FullScreenStatus from './Components/FullScreenStatus';
 import AppGantt from './Components/Gantt';
 import AppHeader from './Components/AppHeader';
 
+export const EstimateCtx = React.createContext();
+
 function App() {
   const [appStatus, setAppStatus] = useState(null);
 
   const [currentProject, setCurrentProject] = useState(null);
   const [users, setUsers] = useState([]);
   const [issues, setIssues] = useState([]);
+
+  const [isEst, setIsEst] = useState(false);
 
   useEffect(() => {
     if (!issues.length) {
@@ -58,7 +62,7 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <EstimateCtx.Provider value={{ isEst, setIsEst }}>
       {currentProject && <AppHeader {...headerProps}/>}
       <MarginBottom value={16}/>
       {appStatus ? <FullScreenStatus status={appStatus}/> : (
@@ -66,7 +70,7 @@ function App() {
           <AppGantt issues={issues}/>
         </React.Fragment>
       )}
-    </React.Fragment>
+    </EstimateCtx.Provider>
   );
 }
 

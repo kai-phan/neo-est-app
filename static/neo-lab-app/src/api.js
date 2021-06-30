@@ -20,4 +20,11 @@ const getUsersInProject = (key) => {
   return requestJira(`/rest/api/3/user/assignable/multiProjectSearch?projectKeys=${key}`);
 };
 
-export default { getListIssueByJQL, getUsersInProject };
+const putEstimate = ({ payload, issueId }) => {
+  return requestJira(`/rest/api/3/issue/${issueId}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  });
+}
+
+export default { getListIssueByJQL, getUsersInProject, putEstimate };

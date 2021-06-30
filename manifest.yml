@@ -4,7 +4,12 @@ modules:
       resource: main
       resolver:
         function: resolver
-      title: Timeline
+      title: Neolab Estimations
+      displayConditions:
+        or:
+          hasSoftwareAccess: true
+          and:
+            isProjectAdmin: false
   function:
     - key: resolver
       handler: index.handler
@@ -28,3 +33,4 @@ permissions:
       - 'unsafe-hashes'
       - 'unsafe-eval'
       - 'unsafe-inline'
+
